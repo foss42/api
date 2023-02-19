@@ -14,7 +14,7 @@ async def to_slug(data: SlugifyModel = Depends()) -> dict:
                       data.sep)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @text_conversion_router.get("/phone2numeric")
 async def phone_number_to_numeric(data: TextModel = Depends()) -> dict:
@@ -22,7 +22,7 @@ async def phone_number_to_numeric(data: TextModel = Depends()) -> dict:
         res = tl.phone2numeric(data.text)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @text_conversion_router.get("/leet")
 async def to_leet(data: TextModel = Depends()) -> dict:
@@ -30,7 +30,7 @@ async def to_leet(data: TextModel = Depends()) -> dict:
         res = tl.leet(data.text)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @text_conversion_router.get("/upsidedown")
 async def to_upside_down(data: TextModel = Depends()) -> dict:
@@ -38,7 +38,7 @@ async def to_upside_down(data: TextModel = Depends()) -> dict:
         res = tl.upside_down(data.text)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @text_conversion_router.get("/mirror")
 async def to_mirror(data: TextModel = Depends()) -> dict:
@@ -46,4 +46,4 @@ async def to_mirror(data: TextModel = Depends()) -> dict:
         res = tl.mirror(data.text)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID

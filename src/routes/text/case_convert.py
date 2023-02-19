@@ -14,7 +14,7 @@ def _convert(text: str, func: Callable) -> dict:
             const.k_data: res
         }
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @case_convert_router.post("/lower")
 async def to_lower_case(data: TextModel) -> dict:

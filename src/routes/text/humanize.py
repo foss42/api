@@ -16,7 +16,7 @@ async def humanize_bytes(data: HumanizeBytesModel = Depends()) -> dict:
                                 data.trailing_zeros)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @humanize_router.get("/social")
 async def humanize_social(data: HumanizeSocialModel = Depends()) -> dict:
@@ -28,7 +28,7 @@ async def humanize_social(data: HumanizeSocialModel = Depends()) -> dict:
                                 data.trailing_zeros)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 @humanize_router.get("/rank")
 async def humanize_rank(data: HumanizeRankModel = Depends()) -> dict:
@@ -37,7 +37,7 @@ async def humanize_rank(data: HumanizeRankModel = Depends()) -> dict:
                                data.to_words)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
 
 
 @humanize_router.get("/time")
@@ -53,4 +53,4 @@ async def humanize_time(data: HumanizeTimeModel = Depends()) -> dict:
                                data.round_down)
         return {const.k_data: res}
     except:
-        raise ex_invalid
+        raise EX_INVALID
