@@ -10,6 +10,8 @@
 - Case Conversion - [Browse APIs](https://foss42.com/case)
 - .. and many more are in progress.
 
+The core library is also open source and you can check it out [here](https://github.com/foss42/foss42-core).
+
 ### Please support this initiative by giving this project a Star ⭐️
 
 ## How can you Contribute / Suggest new APIs?
