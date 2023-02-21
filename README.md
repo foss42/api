@@ -1,3 +1,4 @@
+
 # foss42 - Open Source APIs for all!
 
 ### Please support this initiative by giving this project a Star ⭐️
@@ -15,9 +16,10 @@
 
 ## Understanding the Project Structure
 
-foss42 APIs project has 2 parts:
+foss42 APIs project has 3 parts:
 - [foss42/api](https://github.com/foss42/api): The FastAPI app which serves the APIs.
 - [foss42/foss42-core](https://github.com/foss42/foss42-core): The open source core python library which has the algorithms, the data and does all the heavy-lifting.
+- [foss42/api/docs](https://github.com/foss42/api/tree/main/docs): The documentation for each API that is available in the [foss42.com website](https://foss42.com).
 
 ## How can I Contribute?
 
@@ -32,7 +34,11 @@ Please start a new Issue in this repository. We love PRs & contributions that ad
 ### Where can I add new data (eg: Some specific data pertaining to a country) or improve the API logic?
 
 All API data and core logic resides in the [foss42/foss42-core](https://github.com/foss42/foss42-core) project.
-Please feel free to raise an issue in the [foss42/foss42-core](https://github.com/foss42/foss42-core) repository. 
+Please feel free to raise an issue in the [foss42/foss42-core](https://github.com/foss42/foss42-core) repository.
+
+### I noticed a bug in the documentation or I want to improve the documentation of an existing API. Can I do that?
+
+Absolutely, we welcome any improvements to the project documentation. It is open source and available at [foss42/api/docs](https://github.com/foss42/api/tree/main/docs). Please feel free to make the necessary changes and raise a Pull Request. 
 
 ### I have not contributed to any open source project before. Will I get any guidance?
 
