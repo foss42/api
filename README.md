@@ -1,3 +1,4 @@
+<img width="1200" alt="banner-expanded" src="https://user-images.githubusercontent.com/615622/220398097-dbe4194d-6c1e-42ca-b930-d22d0f5acb4b.png">
 
 # foss42 - Open Source APIs for all!
 
