@@ -20,7 +20,7 @@ This API fetches the name by which a country is popularly know as, for the given
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Example
+## Sample Usage
 
 Below is an example of the api usage. 
 

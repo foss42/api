@@ -20,7 +20,7 @@ This API converts the input text to capital case, wherein for each word in the s
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

@@ -24,7 +24,7 @@ This API turns number of bytes (like `2345674`) into a human readable format (`2
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

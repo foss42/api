@@ -20,7 +20,7 @@ This API converts the input text to snake case. Snake Case is also known as poth
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

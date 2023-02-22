@@ -7,7 +7,7 @@ path: country/codes
 
 This API fetches the country code dictionary where country names are keys and the Alpha-2 (two-lettered) country codes are the values corresponding to the keys.
 
-## Example
+## Sample Usage
 
 Below is an example of the api usage. 
 

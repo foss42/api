@@ -27,7 +27,7 @@ This API returns a time difference in human readable version as typically displa
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

@@ -20,7 +20,7 @@ This API converts a number provided into its ordinal form that indicates the exa
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

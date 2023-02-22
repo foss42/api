@@ -20,7 +20,7 @@ This API returns the 1337 version of the text. The 1337 version or Leet is a sys
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

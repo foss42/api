@@ -21,7 +21,7 @@ This API converts the input text to constant case. Constant case is also known a
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

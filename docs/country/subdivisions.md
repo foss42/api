@@ -29,7 +29,7 @@ Currently, the following countries are supported:
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Example
+## Sample Usage
 
 Below is an example of the api usage. 
 

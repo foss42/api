@@ -24,7 +24,7 @@ This API returns a human readable version of social media numbers like number of
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

@@ -20,7 +20,7 @@ This API converts the input text to pascal snake case.
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

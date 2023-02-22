@@ -20,7 +20,7 @@ This API converts a phone number with letters into its numeric equivalent.
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 Below is a basic usage of the api with just the text param. 

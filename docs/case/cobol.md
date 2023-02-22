@@ -20,7 +20,7 @@ This API converts the input text to cobol case where every word is capitalised. 
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

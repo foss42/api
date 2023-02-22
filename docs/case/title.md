@@ -25,7 +25,7 @@ The rules are based on style guides from APA, The Chicago Manual of Style, and o
 
 
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

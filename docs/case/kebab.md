@@ -21,7 +21,7 @@ This API converts the input text to kebab case. Kebab case is also known as skew
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

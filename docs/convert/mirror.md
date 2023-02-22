@@ -20,7 +20,7 @@ This API returns the mirror version of the input text.
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

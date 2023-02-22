@@ -24,7 +24,7 @@ It is commonly used in Java, JavaScript, and TypeScript for creating variable, f
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

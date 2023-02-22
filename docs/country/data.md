@@ -20,7 +20,7 @@ This API fetches some world bank data of a country provided its ISO Alpha-2 or A
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Example
+## Sample Usage
 
 Below is an example of the api usage. 
 

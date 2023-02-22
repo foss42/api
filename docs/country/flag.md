@@ -20,7 +20,7 @@ This API fetches the emoji country flag corresponding to an ISO Alpha-2 or Alpha
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Example
+## Sample Usage
 
 Below is an example of the api usage. 
 

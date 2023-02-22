@@ -20,7 +20,7 @@ This API converts the input text into sentence case wherein the first character 
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

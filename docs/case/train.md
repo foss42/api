@@ -21,7 +21,7 @@ This API converts the input text to train case where the first letter of each wo
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 

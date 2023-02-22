@@ -20,7 +20,7 @@ This API converts all the uppercase characters of the input text to lowercase an
 | 200 | Successful Response |
 | 422 | Validation Error |
 
-## Examples
+## Sample Usage
 
 ### 1. Basic Usage
 
