@@ -9,9 +9,19 @@ This API fetches the country code dictionary where country names are keys and th
 
 ## Sample Usage
 
-Below is an example of the api usage. 
+This API has no query parameters.
 
-#### Request
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
+
+```
+{{ site_api }}/{{ path }}
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
 
 ```
 curl -X 'GET' \

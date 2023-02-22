@@ -11,7 +11,7 @@ This API converts the input text into sentence case wherein the first character 
 
 | Attribute | Data Type | Required | Default Value |Description |
 | ----------- | ----------- | -----------  | ----------- | ----------- |
-| text | string | Yes | | The input text  |
+| `text` | `string` | Yes | | The input text  |
 
 ## HTTP Response Codes
 
@@ -22,11 +22,25 @@ This API converts the input text into sentence case wherein the first character 
 
 ## Sample Usage
 
-### 1. Basic Usage
+### Example #1
 
-Below is an example of the api usage with the text param. 
+Below is an example API usage for the `text` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `grass is green` | `grass%20is%20green` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
+
+```
+{{ site_api }}/{{ path }}?text=grass%20is%20green
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
 
 ```
 curl "{{ site_api }}/{{ path }}?text=grass%20is%20green"
@@ -40,11 +54,25 @@ curl "{{ site_api }}/{{ path }}?text=grass%20is%20green"
 }
 ```
 
-### 2. Basic Usage
+### Example #2
 
-Below is another example of the api usage with the text param. 
+Below is another example API usage for the `text` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `grass is greener in California with Tim` | `grass%20is%20greener%20in%20California%20with%20Tim` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
+
+```
+{{ site_api }}/{{ path }}?text=grass%20is%20greener%20in%20California%20with%20Tim
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
 
 ```
 curl "{{ site_api }}/{{ path }}?text=grass%20is%20greener%20in%20California%20with%20Tim"

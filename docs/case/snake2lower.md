@@ -11,7 +11,7 @@ This API converts snake case to lower case.
 
 | Attribute | Data Type | Required | Default Value |Description |
 | ----------- | ----------- | -----------  | ----------- | ----------- |
-| text | string | Yes | | The input text  |
+| `text` | `string` | Yes | | The input text  |
 
 ## HTTP Response Codes
 
@@ -22,14 +22,28 @@ This API converts snake case to lower case.
 
 ## Sample Usage
 
-### 1. Basic Usage
+### Example #1
 
-Below is an example of the api usage with the text param. 
+Below is an example API usage for the `text` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `grass_is_green` | `grass_is_green` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
 
 ```
-curl "http://127.0.0.1:8000/case/snake2lower?text=grass_is_green"
+{{ site_api }}/{{ path }}?text=grass_is_green
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
+
+```
+curl "{{ site_api }}/{{ path }}?text=grass_is_green"
 ```
 
 #### Response

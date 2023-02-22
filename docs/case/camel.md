@@ -15,7 +15,7 @@ It is commonly used in Java, JavaScript, and TypeScript for creating variable, f
 
 | Attribute | Data Type | Required | Default Value |Description |
 | ----------- | ----------- | -----------  | ----------- | ----------- |
-| text | string | Yes | | The input text  |
+| `text` | `string` | Yes | | The input text  |
 
 ## HTTP Response Codes
 
@@ -26,11 +26,25 @@ It is commonly used in Java, JavaScript, and TypeScript for creating variable, f
 
 ## Sample Usage
 
-### 1. Basic Usage
+### Example #1
 
-Below is an example of the api usage with the text param. 
+Below is an example API usage for the `text` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `Grass is Green` | `Grass%20is%20Green` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
+
+```
+{{ site_api }}/{{ path }}?text=Grass%20is%20Green
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
 
 ```
 curl "{{ site_api }}/{{ path }}?text=Grass%20is%20Green"

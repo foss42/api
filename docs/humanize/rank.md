@@ -11,7 +11,7 @@ This API converts a number provided into its ordinal form that indicates the exa
 
 | Attribute | Data Type | Required | Default Value |Description |
 | ----------- | ----------- | -----------  | ----------- | ----------- |
-| num | integer | Yes | | The number provided to be converted into a rank or the exact position in a leaderboard |
+| `num` | `integer` | Yes | | The number provided to be converted into a rank or the exact position in a leaderboard |
 
 ## HTTP Response Codes
 
@@ -22,11 +22,25 @@ This API converts a number provided into its ordinal form that indicates the exa
 
 ## Sample Usage
 
-### 1. Basic Usage
+### Example #1
 
-Below is a basic usage of the api with just the `num` param. 
+Below is an example API usage for the `num` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `num` | `3` | `3` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
+
+```
+{{ site_api }}/{{ path }}?num=3
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
 
 ```
 curl "{{ site_api }}/{{ path }}?num=3"
@@ -41,62 +55,3 @@ curl "{{ site_api }}/{{ path }}?num=3"
 ```
 
 In the example, num is equal to `3` and the output returned is `3rd`.
-
-Now let us see some examples where we can encounter the **response_code** `422`.
-
-### 2. When num has text value
-
-#### Request
-
-```
-curl "{{ site_api }}/{{ path }}?num=three"
-```
-
-#### Response
-
-```
-{
-  "detail": [
-    {
-      "loc": [
-        "query",
-        "num"
-      ],
-      "msg": "value is not a valid integer",
-      "type": "type_error.integer"
-    }
-  ]
-}
-```
-
-Response status 422 is returned. For this to work, num must be an integer
-
-### 3. When num is less than 0
-
-#### Request
-
-```
-curl "{{ site_api }}/{{ path }}?num=-5"
-```
-
-#### Response
-
-```
-{
-  "detail": [
-    {
-      "loc": [
-        "query",
-        "num"
-      ],
-      "msg": "ensure this value is greater than or equal to 0",
-      "type": "value_error.number.not_ge",
-      "ctx": {
-        "limit_value": 0
-      }
-    }
-  ]
-}
-```
-
-Response status 422 is returned as num has to be greater than equal to 0 for the api to successfully return a value.

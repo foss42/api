@@ -11,7 +11,7 @@ This API converts the input text to snake case. Snake Case is also known as poth
 
 | Attribute | Data Type | Required | Default Value |Description |
 | ----------- | ----------- | -----------  | ----------- | ----------- |
-| text | string | Yes | | The input text  |
+| `text` | `string` | Yes | | The input text  |
 
 ## HTTP Response Codes
 
@@ -22,14 +22,28 @@ This API converts the input text to snake case. Snake Case is also known as poth
 
 ## Sample Usage
 
-### 1. Basic Usage
+### Example #1
 
-Below is an example of the api usage with the text param. 
+Below is an example API usage for the `text` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `Grass is Green` | `Grass%20is%20Green` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
 
 ```
-curl "http://127.0.0.1:8000/case/snake?text=Grass%20is%20Green"
+{{ site_api }}/{{ path }}?text=Grass%20is%20Green
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
+
+```
+curl "{{ site_api }}/{{ path }}?text=Grass%20is%20Green"
 ```
 
 #### Response
@@ -42,14 +56,36 @@ curl "http://127.0.0.1:8000/case/snake?text=Grass%20is%20Green"
 
 As evident in the example above, the snake case version for the input "Grass is Green" is "grass_is_green". All the spaces in the output have been replaced by underscore and the first letter of each word is in lowercase.
 
-### 2. Basic Usage
+### Example #2
 
-Below is another example of the api usage with the text param. 
+Below is another example API usage for the `text` query parameter provided in the table below.
 
-#### Request
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `GRASS IS GREEN` | `GRASS%20IS%20GREEN` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
 
 ```
-curl "http://127.0.0.1:8000/case/snake?text=GRASS%20IS%20GREEN"
+{{ site_api }}/{{ path }}?text=GRASS%20IS%20GREEN
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
+
+```
+{{ site_api }}/{{ path }}?text=GRASS%20IS%20GREEN
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
+
+```
+curl "{{ site_api }}/{{ path }}?text=GRASS%20IS%20GREEN"
 ```
 
 #### Response

@@ -11,7 +11,7 @@ This API converts a phone number with letters into its numeric equivalent.
 
 | Attribute | Data Type | Required | Default Value |Description |
 | ----------- | ----------- | -----------  | ----------- | ----------- |
-| text | string | Yes | | The text supplied to be converted into a numeric phone number |
+| `text` | `string` | Yes | | The text supplied to be converted into a numeric phone number |
 
 ## HTTP Response Codes
 
@@ -22,10 +22,25 @@ This API converts a phone number with letters into its numeric equivalent.
 
 ## Sample Usage
 
-### 1. Basic Usage
-Below is a basic usage of the api with just the text param. 
+### Example #1
 
-#### Request
+Below is an example API usage for the `text` query parameter provided in the table below.
+
+| Query Parameter | Value | URL Safe Value |
+| ----------- | ----------- | -----------  |
+| `text` | `1-800-GOT-JUNK` | `1-800-GOT-JUNK` |
+
+#### API Request
+
+The below API request can be copied and directly executed in the browser.
+
+```
+{{ site_api }}/{{ path }}?text=1-800-GOT-JUNK
+```
+
+#### cURL Request
+
+Making the API request via cURL command line tool.
 
 ```
 curl "{{ site_api }}/{{ path }}?text=1-800-GOT-JUNK"
