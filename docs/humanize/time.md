@@ -16,12 +16,10 @@ The input date can be of [ISO 8601 format](https://www.w3.org/TR/NOTE-datetime) 
 | `YYYY-MM-DD` | Complete date | `1997-07-16` |
 | `YYYY-MM-DDThh:mm` | Complete date plus hours and minutes (UTC) | `1997-07-16T19:20` |
 | `YYYY-MM-DDThh:mm:ss` | Complete date plus hours, minutes and seconds (UTC) | `1997-07-16T19:20:30` |
-| `YYYY-MM-DDThh:mm:ss.s` | Complete date plus hours, minutes, seconds and a decimal fraction of a
-second (UTC) | `1997-07-16T19:20:30.45` |
+| `YYYY-MM-DDThh:mm:ss.s` | Complete date plus hours, minutes, seconds and a decimal fraction of a second (UTC) | `1997-07-16T19:20:30.45` |
 | `YYYY-MM-DDThh:mmTZD` | Complete date plus hours and minutes (with Time-zone) | `1997-07-16T19:20+01:00` |
 | `YYYY-MM-DDThh:mm:ssTZD` | Complete date plus hours, minutes and seconds (with Time-zone) | `1997-07-16T19:20:30+01:00` |
-| `YYYY-MM-DDThh:mm:ss.sTZD` | Complete date plus hours, minutes, seconds and a decimal fraction of a
-second (with Time-zone) | `1997-07-16T19:20:30.45+01:00` |
+| `YYYY-MM-DDThh:mm:ss.sTZD` | Complete date plus hours, minutes, seconds and a decimal fraction of a second (with Time-zone) | `1997-07-16T19:20:30.45+01:00` |
 
 where:
 
