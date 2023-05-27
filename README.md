@@ -5,15 +5,20 @@
 ### Please support this initiative by giving this project a Star ⭐️
 
 [![Discord Server Invite](https://img.shields.io/badge/DISCORD-JOIN%20SERVER-5663F7?style=for-the-badge&logo=discord&logoColor=white)](https://bit.ly/heyfoss)
-[![Documentation](https://img.shields.io/badge/DOCUMENTATION-READ-informational?logo=readthedocs&logoColor=white&style=for-the-badge)](https://foss42.com)
 
-**foss42** is an open source projects provides the following open source APIs:
+Browse our open source public APIs below that are neatly categorized based on use case and/or functionality that you can directly add to your projects:
 
-- Country - [Browse APIs & Documentation](https://foss42.com/country)
-- Text Conversion - [Browse APIs & Documentation](https://foss42.com/convert)
-- Humanization - [Browse APIs & Documentation](https://foss42.com/humanize)
-- Case Conversion - [Browse APIs & Documentation](https://foss42.com/case)
-- .. and many more are in progress.
+### 1. Country - [Browse APIs & Documentation](https://foss42.com/country)
+Access to a wide range of country data (geographic & demographic) and services.
+
+### 2. Text Conversion - [Browse APIs & Documentation](https://foss42.com/convert)
+Convert one type (or format) of data into another format or structure.
+
+### 3. Humanization - [Browse APIs & Documentation](https://foss42.com/humanize)
+Convert data into human readable format for social media applications.
+
+### 4. Case Conversion - [Browse APIs & Documentation](https://foss42.com/case)
+Easily convert text between different letter cases.
 
 ## Understanding the Project Structure
 
