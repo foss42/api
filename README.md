@@ -8,16 +8,16 @@
 
 Browse our open source public APIs below that are neatly categorized based on use case and/or functionality that you can directly add to your projects:
 
-### 1. Country - [Browse APIs & Documentation](https://foss42.com/country)
+### 1. Country
 Access to a wide range of country data (geographic & demographic) and services.
 
-### 2. Text Conversion - [Browse APIs & Documentation](https://foss42.com/convert)
+### 2. Text Conversion
 Convert one type (or format) of data into another format or structure.
 
-### 3. Humanization - [Browse APIs & Documentation](https://foss42.com/humanize)
+### 3. Humanization
 Convert data into human readable format for social media applications.
 
-### 4. Case Conversion - [Browse APIs & Documentation](https://foss42.com/case)
+### 4. Case Conversion
 Easily convert text between different letter cases.
 
 ## Understanding the Project Structure
