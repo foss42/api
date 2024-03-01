@@ -33,8 +33,7 @@ async def humanize_social(data: HumanizeSocialModel = Depends()) -> dict:
 @humanize_router.get("/rank")
 async def humanize_rank(data: HumanizeRankModel = Depends()) -> dict:
     try:
-        res = hz.humanize_rank(data.num,
-                               data.to_words)
+        res = hz.humanize_rank(data.num)
         return {const.k_data: res}
     except:
         raise EX_INVALID
