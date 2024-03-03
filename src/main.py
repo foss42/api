@@ -1,14 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models.settings import const
-from routes import *
+from models.settings import settings
+from models.responses import ok_200
+from routes.geo.country import country_router
+from routes.text.humanize import humanize_router
+from routes.text.case_convert import case_convert_router
+from routes.text.convert import text_conversion_router
+from routes.multi_part.multi_part import multi_part_router
 
-app = FastAPI(title="foss42 APIs",
+app = FastAPI(title="API Dash APIs",
               description="Open Source APIs for all!",
-              version="0.0.1",
+              version="0.0.2",
               contact={
-                  "name": "Get Help with this API",
-                  "url": const.site_foss42,
+                  "name": "Know more about API Dash",
+                  "url": settings.site_url,
               },)
 
 app.add_middleware(
@@ -27,7 +32,5 @@ app.include_router(multi_part_router, prefix="/multi_part")
 
 
 @app.get("/")
-async def welcome() -> dict:
-    return {
-        const.k_message: const.msg_welcome
-    }
+async def welcome():
+    return ok_200(settings.msg_welcome)

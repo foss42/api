@@ -1,3 +1,6 @@
-fastapi==0.89.0
+fastapi==0.110.0
+pydantic[email]
+pydantic-settings
 uvicorn
 foss42
+python-multipart

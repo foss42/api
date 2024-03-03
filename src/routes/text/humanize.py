@@ -1,46 +1,48 @@
 from fastapi import APIRouter, Depends
 import foss42.text.humanize as hz
-from models.settings import const
 from models.text.humanize import *
-from routes.commons import *
+from models.responses import *
 
-humanize_router = APIRouter(tags = ["Humanize"])
+humanize_router = APIRouter(tags=["Humanize"])
+
 
 @humanize_router.get("/bytes")
-async def humanize_bytes(data: HumanizeBytesModel = Depends()) -> dict:
+async def humanize_bytes(data: HumanizeBytesModel = Depends()):
     try:
         res = hz.humanize_bytes(data.num,
                                 data.digits,
                                 data.prefix,
                                 data.add_space,
                                 data.trailing_zeros)
-        return {const.k_data: res}
+        return ok_200(res)
     except:
-        raise EX_INVALID
+        raise internal_error_500()
+
 
 @humanize_router.get("/social")
-async def humanize_social(data: HumanizeSocialModel = Depends()) -> dict:
+async def humanize_social(data: HumanizeSocialModel = Depends()):
     try:
         res = hz.humanize_social(data.num,
-                                data.digits,
-                                data.system,
-                                data.add_space,
-                                data.trailing_zeros)
-        return {const.k_data: res}
+                                 data.digits,
+                                 data.system,
+                                 data.add_space,
+                                 data.trailing_zeros)
+        return ok_200(res)
     except:
-        raise EX_INVALID
+        raise internal_error_500()
+
 
 @humanize_router.get("/rank")
-async def humanize_rank(data: HumanizeRankModel = Depends()) -> dict:
+async def humanize_rank(data: HumanizeRankModel = Depends()):
     try:
         res = hz.humanize_rank(data.num)
-        return {const.k_data: res}
+        return ok_200(res)
     except:
-        raise EX_INVALID
+        raise internal_error_500()
 
 
 @humanize_router.get("/time")
-async def humanize_time(data: HumanizeTimeModel = Depends()) -> dict:
+async def humanize_time(data: HumanizeTimeModel = Depends()):
     try:
         res = hz.humanize_time(data.dt,
                                data.dt_ref,
@@ -50,6 +52,6 @@ async def humanize_time(data: HumanizeTimeModel = Depends()) -> dict:
                                data.add_adverb,
                                data.use_article,
                                data.round_down)
-        return {const.k_data: res}
+        return ok_200(res)
     except:
-        raise EX_INVALID
+        raise internal_error_500()

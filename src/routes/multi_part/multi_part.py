@@ -1,8 +1,8 @@
-from fastapi import APIRouter, UploadFile
-from routes.commons import *
-from fastapi.responses import Response
 import io
 import mimetypes
+from fastapi import APIRouter, UploadFile
+from models.responses import *
+from fastapi.responses import Response
 
 multi_part_router = APIRouter(tags=["Multi Part"])
 
@@ -19,4 +19,4 @@ async def echo_file(file: UploadFile):
         )
 
     except Exception as e:
-        raise custom_exception(str(e))
+        raise internal_error_500()
