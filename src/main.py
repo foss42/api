@@ -28,7 +28,7 @@ app.include_router(country_router, prefix="/country")
 app.include_router(humanize_router, prefix="/humanize")
 app.include_router(text_conversion_router, prefix="/convert")
 app.include_router(case_convert_router, prefix="/case")
-app.include_router(multi_part_router, prefix="/multi_part")
+app.include_router(multi_part_router, prefix="/form")
 
 
 @app.get("/")
