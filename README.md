@@ -34,7 +34,7 @@ foss42 APIs project has 3 parts:
 
 We value your participation in this open source project. If you have ideas or suggestions for APIs that could benefit the dev community and make their life easier, please feel free to share them with us in the Issues/Discussion tab.
 
-Also, please feel free to drop by our [Discord server](https://bit.ly/heyfoss) and we can have a chat in the [FOSS42 > #discussion-support channel](https://discord.com/channels/920089648842293248/1075430590251278439).
+Also, please feel free to drop by our [Discord server](https://bit.ly/heyfoss) and we can have a chat.
 
 ### Where can I suggest new APIs or improvements to existing APIs?
 

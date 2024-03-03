@@ -1,2 +1,2 @@
-Documentation source of [foss42 APIs](https://foss42.com).  
+Documentation source of APIs.  
 All APIs follow a standard template for easy editing and contribution.
