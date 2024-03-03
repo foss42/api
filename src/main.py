@@ -6,7 +6,7 @@ from routes.geo.country import country_router
 from routes.text.humanize import humanize_router
 from routes.text.case_convert import case_convert_router
 from routes.text.convert import text_conversion_router
-from routes.multi_part.multi_part import multi_part_router
+from routes.io.io import io_router
 
 app = FastAPI(title="API Dash APIs",
               description="Open Source APIs for all!",
@@ -28,7 +28,7 @@ app.include_router(country_router, prefix="/country")
 app.include_router(humanize_router, prefix="/humanize")
 app.include_router(text_conversion_router, prefix="/convert")
 app.include_router(case_convert_router, prefix="/case")
-app.include_router(multi_part_router, prefix="/form")
+app.include_router(io_router, prefix="/io")
 
 
 @app.get("/")

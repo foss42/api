@@ -4,3 +4,4 @@ pydantic-settings
 uvicorn
 foss42
 python-multipart
+puremagic

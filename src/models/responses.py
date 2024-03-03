@@ -25,7 +25,7 @@ def internal_error_500(msg: Optional[str] = None) -> HTTPException:
     )
 
 
-def ok_200(data: Any) -> JSONResponse:
+def ok_200(data: Any = None) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content={"data": data}
