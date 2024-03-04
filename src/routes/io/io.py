@@ -70,10 +70,13 @@ async def analyze_img_file(
     try:
         size = hz.humanize_bytes(imfile.size,
                                  2)
+        magic_conf = puremagic.magic_stream(imfile.file)
+        deduced_type = magic_conf[0].mime_type if len(magic_conf) > 0 else None
         return ok_200({
             "provided-token": token,
             "size": size,
             "content-type": imfile.content_type,
-            "file-name": imfile.filename})
+            "file-name": imfile.filename,
+            "deduced-mime-type": deduced_type})
     except:
         raise internal_error_500()
