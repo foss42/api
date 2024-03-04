@@ -1,7 +1,8 @@
 fastapi==0.110.0
 pydantic[email]
 pydantic-settings
-uvicorn
+uvicorn[standard]
+gunicorn
 foss42
 python-multipart
 puremagic
