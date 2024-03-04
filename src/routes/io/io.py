@@ -1,6 +1,5 @@
 import io
 import time
-import mimetypes
 import puremagic
 from typing import Annotated
 from fastapi import (
@@ -11,7 +10,6 @@ from fastapi import (
     Request
 )
 from models.responses import *
-from fastapi.responses import Response
 from foss42.text.slugify import slugify
 import foss42.text.humanize as hz
 
@@ -64,15 +62,18 @@ async def create_file(request: Request):
         raise internal_error_500()
 
 
-@io_router.post('/echo_file')
-async def echo_file(file: UploadFile):
+@io_router.post('/img')
+async def analyze_img_file(
+    imfile: Annotated[UploadFile, File()],
+    token: Annotated[str, Form()],
+):
     try:
-        file_content = io.BytesIO(file.file.read()).getvalue()
-        file_mimetype = mimetypes.guess_type(
-            file.filename)[0] or "application/octet-stream"
-        return Response(
-            content=file_content,
-            media_type=file_mimetype
-        )
-    except Exception as e:
+        size = hz.humanize_bytes(imfile.size,
+                                 2)
+        return ok_200({
+            "provided-token": token,
+            "size": size,
+            "content-type": imfile.content_type,
+            "file-name": imfile.filename})
+    except:
         raise internal_error_500()
