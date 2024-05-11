@@ -130,3 +130,4 @@ dmypy.json
 src/.gcloudignore
 src/app.yaml
 src/requirements.txt
+.DS_Store
