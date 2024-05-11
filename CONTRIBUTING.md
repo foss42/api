@@ -36,11 +36,31 @@ uvicorn main:app --reload
 The following output will be displayed:
 
 ```
-
+src % uvicorn main:app --reload    
+INFO:     Will watch for changes in these directories: ['/Users/user/Documents/api/src']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [31010] using StatReload
+INFO:     Started server process [31012]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
 ```
 
+As seen above `http://127.0.0.1:8000` is the base URL.
 
 ## Testing API
 
+Visit `http://127.0.0.1:8000/docs` in any browser, the following Swagger docs will be visible for your dev setup:
 
+![Screenshot 2024-05-11 at 5 34 21 PM](https://github.com/foss42/api/assets/1382619/6c6de49d-3f6a-41ac-a5b4-c35e82020b92)
 
+You can test any endpoint directly by clicking on `Try it out`.
+
+![Screenshot 2024-05-11 at 5 36 16 PM](https://github.com/foss42/api/assets/1382619/e69293ae-94ff-4c16-89f2-2b9d409222ea)
+
+Now enter request params and/or body and click `Execute`. The result will be displayed as shown below:
+
+![Screenshot 2024-05-11 at 5 38 40 PM](https://github.com/foss42/api/assets/1382619/dc6cf564-ba4e-40ac-ab7e-30577bf58043)
+
+You can also use [API Dash](https://apidash.dev) to test your APIs.
+
+![Screenshot 2024-05-11 at 5 40 26 PM](https://github.com/foss42/api/assets/1382619/b577c296-4f1a-4948-a919-7d7cdb0968a2)
