@@ -4,7 +4,7 @@
 
 [![Discord Server Invite](https://img.shields.io/badge/DISCORD-JOIN%20SERVER-5663F7?style=for-the-badge&logo=discord&logoColor=white)](https://bit.ly/heyfoss)
 
-Browse our open source public APIs below that are neatly categorized based on use case and/or functionality that you can directly add to your projects:
+Currently, we have open source public APIs for the following use cases that you can directly add to your projects:
 
 ### 1. Country
 
