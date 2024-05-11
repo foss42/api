@@ -36,8 +36,6 @@ foss42 APIs project has 3 parts:
 - [foss42/api](https://github.com/foss42/api): The FastAPI app which serves the APIs.
 - [foss42/foss42-core](https://github.com/foss42/foss42-core): The open source core python library which has the algorithms, the data and does all the heavy-lifting.
 
-## How can I Contribute?
-
-Please read our [Contributing Guide](https://github.com/foss42/api/blob/main/CONTRIBUTING.md).
+## Doubts?
 
 Also, please feel free to drop by our [Discord server](https://bit.ly/heyfoss) and we can have a chat.
