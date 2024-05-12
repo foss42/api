@@ -12,7 +12,9 @@ from fastapi import (
 from models.responses import *
 from foss42.text.slugify import slugify
 import foss42.text.humanize as hz
-
+from fastapi.responses import JSONResponse
+from fastapi import HTTPException
+import hashlib
 io_router = APIRouter(tags=["I/O"])
 
 
