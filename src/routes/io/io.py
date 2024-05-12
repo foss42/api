@@ -80,3 +80,15 @@ async def analyze_img_file(
             "deduced-mime-type": deduced_type})
     except:
         raise internal_error_500()
+@io_router.post('/octet-stream')
+async def process_octet_stream(request: Request):
+    try:
+        content = await request.body()
+
+     
+        #Calculate MD5 hash of the content
+        md5_hash = hashlib.md5(content).hexdigest()
+        return JSONResponse({"md5_hash": md5_hash})
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail="Internal server error")
