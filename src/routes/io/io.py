@@ -27,6 +27,14 @@ async def delayed_request(wait: int = 5):
         raise internal_error_500()
 
 
+@io_router.post('/test-head')
+async def test_head():
+    try:
+        return ok_200("HEAD request successful")
+    except:
+        raise internal_error_500()
+
+
 @io_router.post('/form')
 async def form_to_rotate_text_chars(text: Annotated[str, Form()],
                                     sep: Annotated[str, Form()],
