@@ -27,7 +27,7 @@ async def delayed_request(wait: int = 5):
         raise internal_error_500()
 
 
-@io_router.post('/test-head')
+@io_router.head('/test-head')
 async def test_head():
     try:
         return ok_200("HEAD request successful")
