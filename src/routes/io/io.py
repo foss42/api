@@ -15,6 +15,10 @@ import foss42.text.humanize as hz
 
 io_router = APIRouter(tags=["I/O"])
 
+@io_router.delete("test-delete")
+async def test_delete():
+    return ok_200("Test DELETE request")
+
 
 @io_router.get('/delay')
 async def delayed_request(wait: int = 5):
