@@ -32,7 +32,7 @@ Easily convert text between different letter cases.
 
 foss42 APIs project has 3 parts:
 
-- [Swagger API Docs](api.apidash.dev/docs): The documentation for all the APIs automatically generated via FastAPI.
+- [Swagger API Docs](https://api.apidash.dev/docs): The documentation for all the APIs automatically generated via FastAPI.
 - [foss42/api](https://github.com/foss42/api): The FastAPI app which serves the APIs.
 - [foss42/foss42-core](https://github.com/foss42/foss42-core): The open source core python library which has the algorithms, the data and does all the heavy-lifting.
 
