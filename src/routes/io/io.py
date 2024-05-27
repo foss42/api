@@ -1,7 +1,6 @@
 import io
 import time
 import puremagic
-from pydantic import BaseModel
 from typing import Annotated
 from fastapi import (
     APIRouter,
