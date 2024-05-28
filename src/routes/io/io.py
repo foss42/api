@@ -82,7 +82,7 @@ async def analyze_img_file(
 
 file_data = {}
   
-@io_router.post('/user')
+@io_router.post('/user/create')
 async def create_user(username:str
 ,    email:str
 ,    password:str
@@ -99,25 +99,24 @@ async def create_user(username:str
     except:
         raise internal_error_500()
 
-@io_router.put('/user')
-async def create_user(old_username:str
-,    old_email:str
-,    old_password:str, new_username:str
+@io_router.put('/user/update')
+async def update_user(username:str
+,    email:str
+,    password:str
 ,    new_email:str
 ,    new_password:str):
     try:
-        old_file_data = file_data[old_username]
+        old_file_data = file_data[username]
         new_file_data= {
-            "username" : new_username,
+            "username" : username,
             "email" : new_email,
             "password": new_password
         }
-        file_data[new_username] = new_file_data
-        return ok_200({"old_username":old_file_data["username"],
-                       "new_username":new_username,
-                       "old_email" : old_file_data["email"],
+        file_data[username] = new_file_data
+        return ok_200({"username":username,
+                       "email" : old_file_data["email"],
                        "new_email": new_email,
-                       "old_password": old_file_data["password"],
+                       "password": old_file_data["password"],
                        "new_password": new_password})
     except:
             raise internal_error_500()
