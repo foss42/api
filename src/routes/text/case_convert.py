@@ -138,3 +138,8 @@ async def snake_to_lower_case(data: TextModel = Depends()):
 @case_convert_router.get("/kebab2lower")
 async def kebab_to_lower_case(data: TextModel = Depends()):
     return _convert(data.text, cc.kebab_to_lower)
+
+
+# @case_convert_router.get("/screamingsnake")
+# async def to_screaming_snake_case(data: TextModel = Depends()):
+    

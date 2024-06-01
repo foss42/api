@@ -101,12 +101,14 @@ async def create_user(username:str
 
 @io_router.put('/user/update')
 async def update_user(username:str
-,    email:str
-,    password:str
-,    new_email:str
-,    new_password:str):
+,    new_email:Optional[str] = None
+,    new_password:Optional[str]=None):
     try:
         old_file_data = file_data[username]
+        if new_email==None:
+            new_email = old_file_data["email"]
+        if new_password==None:
+            new_password = old_file_data["password"]
         new_file_data= {
             "username" : username,
             "email" : new_email,
@@ -114,9 +116,7 @@ async def update_user(username:str
         }
         file_data[username] = new_file_data
         return ok_200({"username":username,
-                       "email" : old_file_data["email"],
                        "new_email": new_email,
-                       "password": old_file_data["password"],
                        "new_password": new_password})
     except:
             raise internal_error_500()
