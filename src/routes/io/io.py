@@ -80,43 +80,38 @@ async def analyze_img_file(
     except:
         raise internal_error_500()
 
-file_data = {}
+user_data = {}
   
 @io_router.post('/user/create')
-async def create_user(username:str
-,    email:str
-,    password:str
-):
+async def create_user(username:str,
+                      email:str,
+                      password:str):
     try:
-        file_data[username] = {
+        user_data[username] = {
             "username" : username,
             "email" : email,
             "password": password
         }
-        return ok_200({"username":username,
-                       "email" : email,
-                       "password": password})
+        return ok_200(user_data[username])
     except:
         raise internal_error_500()
 
 @io_router.put('/user/update')
-async def update_user(username:str
-,    new_email:Optional[str] = None
-,    new_password:Optional[str]=None):
+async def update_user(username:str,
+                      new_email:Optional[str]=None,
+                      new_password:Optional[str]=None):
     try:
-        old_file_data = file_data[username]
-        if new_email==None:
-            new_email = old_file_data["email"]
-        if new_password==None:
-            new_password = old_file_data["password"]
-        new_file_data= {
+        old_user_data = user_data[username]
+        if new_email is None:
+            new_email = old_user_data["email"]
+        if new_password is None:
+            new_password = old_user_data["password"]
+        new_user_data= {
             "username" : username,
             "email" : new_email,
             "password": new_password
         }
-        file_data[username] = new_file_data
-        return ok_200({"username":username,
-                       "new_email": new_email,
-                       "new_password": new_password})
+        user_data[username] = new_user_data
+        return ok_200(user_data[username])
     except:
-            raise internal_error_500()
+        raise internal_error_500()
