@@ -6,3 +6,5 @@ gunicorn
 foss42 @ git+https://github.com/foss42/foss42-core.git
 python-multipart
 puremagic
+python-jose[cryptography]
+python-dotenv
