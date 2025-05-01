@@ -23,7 +23,7 @@ async def read_users_me(current_user: TokenData = Depends(get_current_active_use
 async def read_all_users():
     try:
         users = [UserModel(**user_data) for user_data in USERS]
-        return users
+        return UserListResponseModel(data=users)
     except Exception as e:
         raise internal_error_500("Could not fetch users")
 
