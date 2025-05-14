@@ -1,13 +1,16 @@
 from fastapi import APIRouter, Depends, Response
 from datetime import timedelta
 
-from models.user.auth import TokenData, TokenResponseModel, UserLoginModel
+from fastapi.security import OAuth2PasswordBearer
+
+from models.user.auth import TokenResponseModel, UserLoginModel
 from models.responses import ok_200, internal_error_500
-from config import *
-from utils import create_access_token, get_current_user
+from foss42.user.config import ACCESS_TOKEN_EXPIRE_MINUTES, COOKIE_NAME
+from foss42.user.generate_token import create_access_token
 
 
 auth_router = APIRouter(tags=["User Authentication"])
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login", auto_error=False)
 
 
 @auth_router.post("/login")
@@ -40,7 +43,3 @@ async def logout(response: Response):
         return ok_200({"message": "Successfully logged out"})
     except Exception as e:
         raise internal_error_500("Logout failed")
-
-
-async def get_current_active_user(current_user: TokenData = Depends(get_current_user)):
-    return current_user

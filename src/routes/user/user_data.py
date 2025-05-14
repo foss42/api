@@ -1,14 +1,13 @@
 from fastapi import APIRouter, Depends
 import random
-from const import USERS
-from models.responses import ok_200, not_found_404, internal_error_500
+from foss42.data.user.users import USERS
+from models.responses import not_found_404, internal_error_500
 from models.user.user_data import UserListResponseModel, UserModel
-from .auth import get_current_active_user, TokenData
 
 user_data_router = APIRouter(tags=["User Data"])
 
 @user_data_router.get("/profile")
-async def read_users_me(current_user: TokenData = Depends(get_current_active_user)):
+async def read_users_me():
     try:
         if not USERS:
             raise not_found_404("No users available")
