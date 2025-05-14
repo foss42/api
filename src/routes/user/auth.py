@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from models.user.auth import TokenResponseModel, UserLoginModel
 from models.responses import ok_200, internal_error_500
 from foss42.user.config import ACCESS_TOKEN_EXPIRE_MINUTES, COOKIE_NAME
-from foss42.user.generate_token import create_access_token
+from foss42.user.auth import create_access_token
 
 
 auth_router = APIRouter(tags=["User Authentication"])
@@ -18,7 +18,7 @@ async def login_for_access_token(response: Response, data: UserLoginModel = Depe
     try:
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token(
-            data={"sub": data.username}, expires_delta=access_token_expires
+            data={"sub": data.username}
         )
         response.set_cookie(
             key=COOKIE_NAME,
