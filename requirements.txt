@@ -3,6 +3,6 @@ pydantic[email]
 pydantic-settings
 uvicorn[standard]
 gunicorn
-foss42 @ git+https://github.com/Udhay-Adithya/apidash-backend-core.git
+foss42 @ git+https://github.com/foss42/foss42-core.git
 python-multipart
 puremagic
