@@ -10,6 +10,12 @@ def bad_request_400(msg: Optional[str] = None) -> HTTPException:
         detail=HTTPStatus.BAD_REQUEST(1) if msg is None else msg,
     )
 
+def unauthorized_401(msg: Optional[str] = None) -> HTTPException:
+    return HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail=HTTPStatus.UNAUTHORIZED(1) if msg is None else msg,
+    )
+
 
 def not_found_404(msg: Optional[str] = None) -> HTTPException:
     return HTTPException(

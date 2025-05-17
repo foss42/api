@@ -28,6 +28,15 @@ Convert data into human readable format for social media applications.
 
 Easily convert text between different letter cases.
 
+### 5. User Authentication
+
+Endpoints for user login and logout operations, managing user sessions and access tokens.
+
+### 6. User Data
+
+Retrieve user information, including profiles, lists of users, and specific user details by ID.
+
+
 ## Understanding the Project Structure
 
 foss42 APIs project has 3 parts:
