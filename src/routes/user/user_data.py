@@ -1,12 +1,17 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from foss42.user.users import get_random_user_data, get_all_users_data, get_user_data_by_id
-from models.responses import not_found_404, internal_error_500
+from models.responses import not_found_404, internal_error_500, unauthorized_401
 from models.user.user_data import UserListResponseModel, UserModel
+from routes.user.auth import oauth2_scheme
 
 user_data_router = APIRouter(tags=["User Data"])
 
 @user_data_router.get("/profile")
-async def read_random_profile():
+async def read_random_profile(token: str = Depends(oauth2_scheme)):
+    
+    if token is None:
+        raise unauthorized_401("Not authenticated")
+    
     try:
         random_user_data = get_random_user_data()
         if not random_user_data:
