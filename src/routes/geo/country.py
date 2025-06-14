@@ -58,3 +58,20 @@ async def get_country_subdivisions(data: CountryCodeModel = Depends()):
         return ok_200(res)
     except Exception as e:
         raise internal_error_500()
+
+
+@country_router.get("/population_density")
+async def get_country_population_density(data: CountryCodeModel = Depends()):
+    try:
+        res = co.code_to_population_density(data.code)
+        return ok_200(res)
+    except Exception as e:
+        raise internal_error_500()
+
+@country_router.get("/gender_ratio")
+async def get_country_gender_ratio(data: CountryCodeModel = Depends()):
+    try:
+        res = co.code_to_gender_ratio(data.code)
+        return ok_200(res)
+    except Exception as e:
+        raise internal_error_500()
