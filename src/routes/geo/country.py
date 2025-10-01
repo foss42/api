@@ -58,3 +58,16 @@ async def get_country_subdivisions(data: CountryCodeModel = Depends()):
         return ok_200(res)
     except Exception as e:
         raise internal_error_500()
+    
+@country_router.get("/phonecodes")
+async def get_country_phonecodes(data: CountryCodeModel = Depends()):
+    try:
+        res = co.code_to_phone_code(data.code)
+        if res:
+            return ok_200(res)
+        else:
+            return not_found_404("Phone code not found for the given country code.")
+    except KeyError:
+        return bad_request_400("Invalid country code provided.")
+    except Exception as e:
+        return internal_error_500(str(e))
