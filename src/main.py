@@ -6,9 +6,11 @@ from routes.geo.country import country_router
 from routes.text.humanize import humanize_router
 from routes.text.case_convert import case_convert_router
 from routes.text.convert import text_conversion_router
+
 from routes.io.io import io_router
 from routes.user.auth import auth_router
 from routes.user.user_data import user_data_router
+from routes.finance.currency import router as currency_router
 
 app = FastAPI(title="API Dash APIs",
               description="Open Source APIs for all!",
@@ -33,6 +35,7 @@ app.include_router(case_convert_router, prefix="/case")
 app.include_router(io_router, prefix="/io")
 app.include_router(auth_router, prefix="/auth") 
 app.include_router(user_data_router, prefix="")
+app.include_router(currency_router, prefix="/currency")
 
 @app.get("/")
 async def welcome():
