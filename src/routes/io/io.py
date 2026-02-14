@@ -7,7 +7,8 @@ from fastapi import (
     File,
     UploadFile,
     Form,
-    Request
+    Request,
+    Resonse
 )
 from models.responses import *
 from foss42.text.slugify import slugify
@@ -82,6 +83,10 @@ async def analyze_img_file(
 
 user_data = {}
   
+@io_router.head("/head")
+async def head_endpoint():
+    return Response(headers={"Custom-Header": "Ok"})
+
 @io_router.post('/user/create')
 async def create_user(username:str,
                       email:str,
