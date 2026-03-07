@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 import foss42.geo.country as co
+
 from models.geo.country import CountryCodeModel
 from models.responses import *
 
@@ -21,7 +22,7 @@ async def get_country_data(data: CountryCodeModel = Depends()):
         res = co.code_to_data(data.code)
         return ok_200(res)
     except ValueError as e:
-        raise bad_request_400(str(e))
+        raise not_found_404(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -32,7 +33,7 @@ async def get_country_flag(data: CountryCodeModel = Depends()):
         res = co.code_to_flag(data.code)
         return ok_200(res)
     except ValueError as e:
-        raise bad_request_400(str(e))
+        raise not_found_404(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -43,7 +44,7 @@ async def get_country_name(data: CountryCodeModel = Depends()):
         res = co.code_to_popular_name(data.code)
         return ok_200(res)
     except ValueError as e:
-        raise bad_request_400(str(e))
+        raise not_found_404(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -53,7 +54,7 @@ async def get_official_country_name(data: CountryCodeModel = Depends()):
         res = co.code_to_official_name(data.code)
         return ok_200(res)
     except ValueError as e:
-        raise bad_request_400(str(e))
+        raise not_found_404(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -65,7 +66,7 @@ async def get_country_subdivisions(data: CountryCodeModel = Depends()):
         return ok_200(res)
  
     except ValueError as e:
-        raise bad_request_400(str(e))
+        raise not_found_404(str(e))
     except NotImplementedError as e:
         raise not_implemented_501(str(e))
     except Exception as e:
