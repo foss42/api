@@ -20,6 +20,8 @@ async def get_country_data(data: CountryCodeModel = Depends()):
     try:
         res = co.code_to_data(data.code)
         return ok_200(res)
+    except ValueError as e:
+        raise bad_request_400(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -29,6 +31,8 @@ async def get_country_flag(data: CountryCodeModel = Depends()):
     try:
         res = co.code_to_flag(data.code)
         return ok_200(res)
+    except ValueError as e:
+        raise bad_request_400(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -38,15 +42,18 @@ async def get_country_name(data: CountryCodeModel = Depends()):
     try:
         res = co.code_to_popular_name(data.code)
         return ok_200(res)
+    except ValueError as e:
+        raise bad_request_400(str(e))
     except Exception as e:
         raise internal_error_500()
-
 
 @country_router.get("/officialname")
 async def get_official_country_name(data: CountryCodeModel = Depends()):
     try:
         res = co.code_to_official_name(data.code)
         return ok_200(res)
+    except ValueError as e:
+        raise bad_request_400(str(e))
     except Exception as e:
         raise internal_error_500()
 
@@ -56,5 +63,10 @@ async def get_country_subdivisions(data: CountryCodeModel = Depends()):
     try:
         res = co.code_to_subdivision(data.code)
         return ok_200(res)
+ 
+    except ValueError as e:
+        raise bad_request_400(str(e))
+    except NotImplementedError as e:
+        raise not_implemented_501(str(e))
     except Exception as e:
         raise internal_error_500()

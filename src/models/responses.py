@@ -36,3 +36,24 @@ def ok_200(data: Any = None) -> JSONResponse:
         status_code=status.HTTP_200_OK,
         content={"data": data}
     )
+
+def not_implemented_501(msg: Optional[str] = None) -> HTTPException:
+    return HTTPException(
+        status_code=status.HTTP_501_NOT_IMPLEMENTED,
+        detail=HTTPStatus.NOT_IMPLEMENTED(1) if msg is None else msg,
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
