@@ -1,7 +1,7 @@
 import io
 import time
 import puremagic
-from typing import Annotated
+from typing import Annotated,Optional
 from fastapi import (
     APIRouter,
     File,
