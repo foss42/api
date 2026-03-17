@@ -1,6 +1,5 @@
 import io
 import time
-import asyncio
 import puremagic
 from typing import Annotated,Optional
 from fastapi import (
@@ -8,8 +7,7 @@ from fastapi import (
     File,
     UploadFile,
     Form,
-    Request,
-    HTTPException
+    Request
 )
 from models.responses import *
 from foss42.text.slugify import slugify
@@ -23,11 +21,8 @@ async def delayed_request(wait: int = 5):
     try:
         if wait > 120:
             raise bad_request_400(msg="Delay cannot be more than 120 secs")
-        await asyncio.sleep(wait)
+        time.sleep(wait)
         return ok_200(f"Waited for {wait} seconds")
-
-    except HTTPException:
-        raise
     except Exception as e:
         raise internal_error_500()
 
