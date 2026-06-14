@@ -36,6 +36,10 @@ Endpoints for user login and logout operations, managing user sessions and acces
 
 Retrieve user information, including profiles, lists of users, and specific user details by ID.
 
+### 7. WebSockets
+
+A self-hosted WebSocket echo endpoint for testing WebSocket clients without relying on public endpoints.
+
 
 ## Understanding the Project Structure
 
