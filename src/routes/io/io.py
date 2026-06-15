@@ -9,6 +9,8 @@ from fastapi import (
     Form,
     Request
 )
+from fastapi.responses import StreamingResponse
+import asyncio
 from models.responses import *
 from foss42.text.slugify import slugify
 import foss42.text.humanize as hz
@@ -115,3 +117,12 @@ async def update_user(username:str,
         return ok_200(user_data[username])
     except:
         raise internal_error_500()
+
+async def sse_event_generator(count: int):
+    for i in range(1, count + 1):
+        yield f"data: event{i}\n\n"
+        await asyncio.sleep(1)
+
+@io_router.get('/server-events/{count}')
+async def server_events(count: int):
+    return StreamingResponse(sse_event_generator(count), media_type="text/event-stream")
