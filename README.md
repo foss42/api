@@ -36,6 +36,10 @@ Endpoints for user login and logout operations, managing user sessions and acces
 
 Retrieve user information, including profiles, lists of users, and specific user details by ID.
 
+### 7. Input/Output (I/O)
+
+Endpoints for testing specific I/O behavior, including Server-Sent Events (SSE).
+
 
 ## Understanding the Project Structure
 
