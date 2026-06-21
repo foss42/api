@@ -2,7 +2,7 @@ import io
 import asyncio
 import time
 import puremagic
-from typing import Annotated,Optional
+from typing import Annotated, Optional
 from fastapi import (
     APIRouter,
     File,
