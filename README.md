@@ -52,6 +52,38 @@ foss42 APIs project has 3 parts:
 - [foss42/api](https://github.com/foss42/api): The FastAPI app which serves the APIs.
 - [foss42/foss42-core](https://github.com/foss42/foss42-core): The open source core python library which has the algorithms, the data and does all the heavy-lifting.
 
+## How to Run Locally
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/foss42/api.git
+   cd api
+   ```
+
+2. **Set up a virtual environment (optional but recommended):**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the FastAPI server:**
+   ```bash
+   cd src
+   python3 -m uvicorn main:app --reload
+   ```
+   Alternatively, you can run the provided startup script:
+   ```bash
+   bash startup.sh
+   ```
+
+5. **View API Docs:**
+   Open your browser and navigate to `http://localhost:8000/docs` to see the interactive Swagger UI.
+
 ## Doubts?
 
 Also, please feel free to drop by our [Discord server](https://bit.ly/heyfoss) and we can have a chat.
