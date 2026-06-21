@@ -38,8 +38,11 @@ Retrieve user information, including profiles, lists of users, and specific user
 
 ### 7. Input/Output (I/O)
 
-Endpoints for testing specific I/O behavior, including Server-Sent Events (SSE).
+Endpoints for testing I/O behavior
 
+### 8. Server-Sent Events (SSE)
+
+Endpoints for testing Server-Sent Events (SSE).
 
 ## Understanding the Project Structure
 
