@@ -47,6 +47,7 @@ async def get_country_name(data: CountryCodeModel = Depends()):
     except Exception as e:
         raise internal_error_500()
 
+
 @country_router.get("/officialname")
 async def get_official_country_name(data: CountryCodeModel = Depends()):
     try:
@@ -63,7 +64,6 @@ async def get_country_subdivisions(data: CountryCodeModel = Depends()):
     try:
         res = co.code_to_subdivision(data.code)
         return ok_200(res)
- 
     except ValueError as e:
         raise not_found_404(str(e))
     except NotImplementedError as e:
