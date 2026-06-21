@@ -44,6 +44,10 @@ Endpoints for testing I/O behavior
 
 Endpoints for testing Server-Sent Events (SSE).
 
+### 9. WebSockets
+
+A self-hosted WebSocket echo endpoint for testing WebSocket clients without relying on public endpoints.
+
 ## Understanding the Project Structure
 
 foss42 APIs project has 3 parts:
