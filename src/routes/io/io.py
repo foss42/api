@@ -41,11 +41,15 @@ async def form_to_rotate_text_chars(text: Annotated[str, Form()],
     application/x-www-form-urlencoded multipart/form-data
     """
     try:
+        if times > 10000:
+            raise bad_request_400("times cannot be more than 10000")
         res = slugify(text,
                       sep)
         if times > 1:
             res = sep.join([res,]*times)
         return ok_200(res)
+    except HTTPException:
+        raise
     except:
         raise internal_error_500()
 
@@ -59,9 +63,9 @@ async def create_file(request: Request):
         if content_length and int(content_length) > MAX_BODY_SIZE:
             raise HTTPException(status_code=413, detail="Payload Too Large")
             
-        content = b""
+        content = bytearray()
         async for chunk in request.stream():
-            content += chunk
+            content.extend(chunk)
             if len(content) > MAX_BODY_SIZE:
                 raise HTTPException(status_code=413, detail="Payload Too Large")
                 
@@ -85,6 +89,8 @@ async def analyze_img_file(
     token: Annotated[str, Form()],
 ):
     try:
+        if imfile.size > MAX_BODY_SIZE:
+            raise HTTPException(status_code=413, detail="Payload Too Large")
         size = hz.humanize_bytes(imfile.size,
                                  2)
         magic_conf = puremagic.magic_stream(imfile.file)
@@ -95,6 +101,8 @@ async def analyze_img_file(
             "content-type": imfile.content_type,
             "file-name": imfile.filename,
             "deduced-mime-type": deduced_type})
+    except HTTPException:
+        raise
     except:
         raise internal_error_500()
 
@@ -106,6 +114,8 @@ async def create_user(username:str,
                       email:str,
                       password:str):
     try:
+        if len(username) > 255 or len(email) > 255 or len(password) > 255:
+            raise bad_request_400("Field lengths cannot exceed 255 characters")
         user_data[username] = {
             "username" : username,
             "email" : email,
@@ -115,6 +125,8 @@ async def create_user(username:str,
             oldest_key = next(iter(user_data))
             del user_data[oldest_key]
         return ok_200(user_data[username])
+    except HTTPException:
+        raise
     except:
         raise internal_error_500()
 
@@ -123,6 +135,8 @@ async def update_user(username:str,
                       new_email:Optional[str]=None,
                       new_password:Optional[str]=None):
     try:
+        if len(username) > 255 or (new_email and len(new_email) > 255) or (new_password and len(new_password) > 255):
+            raise bad_request_400("Field lengths cannot exceed 255 characters")
         old_user_data = user_data[username]
         if new_email is None:
             new_email = old_user_data["email"]
@@ -135,6 +149,8 @@ async def update_user(username:str,
         }
         user_data[username] = new_user_data
         return ok_200(user_data[username])
+    except HTTPException:
+        raise
     except:
         raise internal_error_500()
 
@@ -143,6 +159,8 @@ async def patch_user(username: str,
                      new_email: Optional[str] = None,
                      new_password: Optional[str] = None):
     try:
+        if len(username) > 255 or (new_email and len(new_email) > 255) or (new_password and len(new_password) > 255):
+            raise bad_request_400("Field lengths cannot exceed 255 characters")
         if username not in user_data:
             raise not_found_404("User not found")
         if new_email is not None:
