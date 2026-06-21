@@ -9,6 +9,7 @@ from routes.text.convert import text_conversion_router
 from routes.io.io import io_router
 from routes.user.auth import auth_router
 from routes.user.user_data import user_data_router
+from routes.sse.sse import sse_router
 from routes.ws.ws import ws_router
 
 app = FastAPI(title="API Dash APIs",
@@ -33,6 +34,7 @@ app.include_router(text_conversion_router, prefix="/convert")
 app.include_router(case_convert_router, prefix="/case")
 app.include_router(io_router, prefix="/io")
 app.include_router(auth_router, prefix="/auth") 
+app.include_router(sse_router, prefix="/sse")
 app.include_router(user_data_router, prefix="")
 app.include_router(ws_router, prefix="/ws")
 
