@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 import foss42.geo.country as co
-
 from models.geo.country import CountryCodeModel
 from models.responses import *
 
