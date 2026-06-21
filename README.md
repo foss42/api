@@ -88,6 +88,15 @@ foss42 APIs project has 3 parts:
 5. **View API Docs:**
    Open your browser and navigate to `http://localhost:8000/docs` to see the interactive Swagger UI.
 
+## How to Run Tests
+
+To execute the test suite locally, use the following commands:
+
+```bash
+pip install -r requirements-dev.txt
+python3 -m pytest tests/
+```
+
 ## Doubts?
 
 Also, please feel free to drop by our [Discord server](https://bit.ly/heyfoss) and we can have a chat.
