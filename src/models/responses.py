@@ -42,18 +42,3 @@ def not_implemented_501(msg: Optional[str] = None) -> HTTPException:
         status_code=status.HTTP_501_NOT_IMPLEMENTED,
         detail=HTTPStatus.NOT_IMPLEMENTED(1) if msg is None else msg,
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
