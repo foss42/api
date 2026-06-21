@@ -50,10 +50,21 @@ async def form_to_rotate_text_chars(text: Annotated[str, Form()],
         raise internal_error_500()
 
 
+MAX_BODY_SIZE = 5 * 1024 * 1024  # 5 MB
+
 @io_router.post("/filesize")
 async def create_file(request: Request):
     try:
-        content = await request.body()
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > MAX_BODY_SIZE:
+            raise HTTPException(status_code=413, detail="Payload Too Large")
+            
+        content = b""
+        async for chunk in request.stream():
+            content += chunk
+            if len(content) > MAX_BODY_SIZE:
+                raise HTTPException(status_code=413, detail="Payload Too Large")
+                
         size = hz.humanize_bytes(len(content),
                                  2)
         header_content_type = dict(request.headers)["content-type"]
@@ -63,6 +74,8 @@ async def create_file(request: Request):
         return ok_200({"size": size,
                        "content-type": header_content_type,
                        "deduced-mime-type": deduced_type})
+    except HTTPException:
+        raise
     except:
         raise internal_error_500()
 
@@ -85,6 +98,7 @@ async def analyze_img_file(
     except:
         raise internal_error_500()
 
+MAX_USERS = 1000
 user_data = {}
   
 @io_router.post('/user/create')
@@ -97,6 +111,9 @@ async def create_user(username:str,
             "email" : email,
             "password": password
         }
+        if len(user_data) > MAX_USERS:
+            oldest_key = next(iter(user_data))
+            del user_data[oldest_key]
         return ok_200(user_data[username])
     except:
         raise internal_error_500()
@@ -160,8 +177,18 @@ async def octet_stream_request(request: Request):
         content_type = request.headers.get("content-type")
         if content_type != "application/octet-stream":
             raise bad_request_400("Content-Type must be application/octet-stream")
-        content = await request.body()
-        size = hz.humanize_bytes(len(content), 2)
+            
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > MAX_BODY_SIZE:
+            raise HTTPException(status_code=413, detail="Payload Too Large")
+            
+        size_bytes = 0
+        async for chunk in request.stream():
+            size_bytes += len(chunk)
+            if size_bytes > MAX_BODY_SIZE:
+                raise HTTPException(status_code=413, detail="Payload Too Large")
+                
+        size = hz.humanize_bytes(size_bytes, 2)
         return ok_200({"size": size, "message": "Octet stream processed successfully"})
     except HTTPException:
         raise
