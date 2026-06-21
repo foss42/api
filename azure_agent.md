@@ -55,20 +55,20 @@ Here's what I created for the Azure App Service deployment:
 1. **Set the startup command** on your existing web app:
    ```bash
    az webapp config set \
-     --name <app-name> \
+     --name foss42-apis \
      --resource-group <resource-group> \
      --startup-file "startup.sh"
    ```
 
 2. **Deploy via ZIP:**
    ```bash
-   zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip"
-   az webapp deploy --name <app-name> --resource-group <resource-group> --src-path deploy.zip --type zip
+   zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip" "*/__pycache__/*" "apienv/*"
+   az webapp deploy --name foss42-apis --resource-group <resource-group> --src-path deploy.zip --type zip
    ```
 
 3. **Verify:**
    ```bash
-   curl https://<app-name>.azurewebsites.net/
+   curl https://api.apidash.dev/
    ```
 
 ### Key difference from AWS
@@ -116,20 +116,20 @@ Found it. Now let me configure and deploy:
 
 Created 3 todos
 
-Ran terminal command:  az webapp config set --name foss42 --resource-group foss42-resource_group --startup-file "startup.sh" --output table 2>&1
+Ran terminal command:  az webapp config set --name foss42-apis --resource-group <resource-group> --startup-file "startup.sh" --output table 2>&1
 
 Good — startup command is set. The runtime shows `PYTHON|3.12`, which is fine. Now let me deploy: 
 
 Starting: *Deploy via ZIP* (2/3)
 
-Ran terminal command:  rm -f deploy.zip && zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip" "*/__pycache__/*"
-
-Ran terminal command:  az webapp deploy --name foss42 --resource-group foss42-resource_group --src-path deploy.zip --type zip 2>&1
-Completed with input:  az webapp deploy --name foss42 --resource-group foss42-resource_group --src-path deploy.zip --type zip 2>&1
+Ran terminal command:  rm -f deploy.zip && zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip" "*/__pycache__/*" "apienv/*"
+ 
+ Ran terminal command:  az webapp deploy --name foss42-apis --resource-group <resource-group> --src-path deploy.zip --type zip 2>&1
+ Completed with input:  az webapp deploy --name foss42-apis --resource-group <resource-group> --src-path deploy.zip --type zip 2>&1
 
 The ZIP deploy got a 502 from Kudu (common transient issue). Let me retry with the `az webapp up` approach instead, which is more reliable: 
 
-Ran terminal command:  az webapp deploy --name foss42 --resource-group foss42-resource_group --src-path deploy.zip --type zip --timeout 300 2>&1
+Ran terminal command:  az webapp deploy --name foss42-apis --resource-group <resource-group> --src-path deploy.zip --type zip --timeout 300 2>&1
 
 User: Wbsite is running thanks
 
@@ -139,13 +139,13 @@ GitHub Copilot:
 
 Created 3 todos
 
-Great, your FastAPI app is live at `https://<foss42>.azurewebsites.net`. 
+Great, your FastAPI app is live at `https://api.apidash.dev`. 
 
 For future deployments, just re-run the zip + deploy commands:
 
 ```bash
-rm -f deploy.zip && zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip" "*/__pycache__/*"
-az webapp deploy --name foss42 --resource-group foss42-resource_group --src-path deploy.zip --type zip
+rm -f deploy.zip && zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip" "*/__pycache__/*" "apienv/*"
+az webapp deploy --name foss42-apis --resource-group <resource-group> --src-path deploy.zip --type zip
 ```
 
 You can also clean up the local deploy.zip since it's no longer needed.

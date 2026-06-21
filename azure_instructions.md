@@ -21,13 +21,13 @@ Replace `<app-name>` and `<resource-group>` with your actual values.
 ```bash
 # Set the startup command
 az webapp config set \
-  --name <app-name> \
+  --name foss42-apis \
   --resource-group <resource-group> \
   --startup-file "startup.sh"
 
 # Ensure the Python 3.11 runtime is set
 az webapp config set \
-  --name <app-name> \
+  --name foss42-apis \
   --resource-group <resource-group> \
   --linux-fx-version "PYTHON|3.11"
 ```
@@ -38,7 +38,7 @@ If your app uses any environment variables (via `pydantic-settings`), set them a
 
 ```bash
 az webapp config appsettings set \
-  --name <app-name> \
+  --name foss42-apis \
   --resource-group <resource-group> \
   --settings KEY1=value1 KEY2=value2
 ```
@@ -49,11 +49,11 @@ From the repository root:
 
 ```bash
 # Create a zip of the project (excluding unnecessary files)
-zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip"
+zip -r deploy.zip . -x ".git/*" "__pycache__/*" "*.pyc" ".env" "deploy.zip" "*/__pycache__/*" "apienv/*"
 
 # Deploy
 az webapp deploy \
-  --name <app-name> \
+  --name foss42-apis \
   --resource-group <resource-group> \
   --src-path deploy.zip \
   --type zip
@@ -64,7 +64,7 @@ az webapp deploy \
 ```bash
 # Set deployment source to local git
 az webapp deployment source config-local-git \
-  --name <app-name> \
+  --name foss42-apis \
   --resource-group <resource-group>
 
 # The command above returns a git remote URL. Add it:
@@ -82,15 +82,15 @@ In the Azure Portal, go to **Deployment Center** → select **GitHub** → autho
 
 ```bash
 # Check deployment logs
-az webapp log tail --name <app-name> --resource-group <resource-group>
+az webapp log tail --name foss42-apis --resource-group <resource-group>
 
 # Test the endpoint
-curl https://<app-name>.azurewebsites.net/
+curl https://api.apidash.dev/
 ```
 
 ## Troubleshooting
 
 - **Port**: Azure App Service injects the `PORT` environment variable (default 8000 for Python). The `startup.sh` binds to `0.0.0.0:8000` to match.
-- **Build errors**: Check build logs at `https://<app-name>.scm.azurewebsites.net/api/logs/docker`.
-- **SSH into the container**: `az webapp ssh --name <app-name> --resource-group <resource-group>` to debug directly.
-- **Startup logs**: `az webapp log download --name <app-name> --resource-group <resource-group>` downloads full logs as a zip.
+- **Build errors**: Check build logs at `https://foss42-apis.scm.azurewebsites.net/api/logs/docker`.
+- **SSH into the container**: `az webapp ssh --name foss42-apis --resource-group <resource-group>` to debug directly.
+- **Startup logs**: `az webapp log download --name foss42-apis --resource-group <resource-group>` downloads full logs as a zip.
