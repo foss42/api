@@ -14,7 +14,7 @@ from routes.ws.ws import ws_router
 
 app = FastAPI(title="API Dash APIs",
               description="Open Source APIs for all!",
-              version="0.0.3",
+              version="0.0.4",
               contact={
                   "name": "Know more about API Dash",
                   "url": settings.site_url,
