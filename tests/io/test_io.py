@@ -47,3 +47,48 @@ def test_io_user_create_update(client):
     res_update = client.put("/io/user/update?username=testuser&new_email=new@test.com")
     assert res_update.status_code == 200
     assert res_update.json()["data"]["email"] == "new@test.com"
+
+def test_io_user_patch_delete(client):
+    client.post("/io/user/create?username=patchuser&email=patch@test.com&password=pw")
+    
+    # Test PATCH
+    res_patch = client.patch("/io/user/patchuser?new_email=patched@test.com")
+    assert res_patch.status_code == 200
+    assert res_patch.json()["data"]["email"] == "patched@test.com"
+    assert res_patch.json()["data"]["password"] == "pw" # unchanged
+    
+    # Test DELETE
+    res_delete = client.delete("/io/user/patchuser")
+    assert res_delete.status_code == 200
+    assert res_delete.json()["data"]["message"] == "User deleted successfully"
+    
+    # Try to PATCH deleted user
+    res_patch_after_delete = client.patch("/io/user/patchuser?new_email=patched@test.com")
+    assert res_patch_after_delete.status_code == 404
+
+def test_io_head(client):
+    response = client.head("/io/head")
+    assert response.status_code == 200
+    assert response.headers.get("x-custom-head") == "HEAD works"
+    assert not response.content
+
+def test_io_octet_stream(client):
+    content = b"Binary \x00\x01\x02 Stream"
+    response = client.post(
+        "/io/octet-stream",
+        content=content,
+        headers={"Content-Type": "application/octet-stream"}
+    )
+    assert response.status_code == 200
+    assert "size" in response.json()["data"]
+    assert response.json()["data"]["message"] == "Octet stream processed successfully"
+
+def test_io_octet_stream_invalid_type(client):
+    content = b"Binary \x00\x01\x02 Stream"
+    response = client.post(
+        "/io/octet-stream",
+        content=content,
+        headers={"Content-Type": "text/plain"}
+    )
+    assert response.status_code == 400
+

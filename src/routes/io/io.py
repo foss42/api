@@ -9,7 +9,8 @@ from fastapi import (
     UploadFile,
     Form,
     Request,
-    HTTPException
+    HTTPException,
+    Response
 )
 from models.responses import *
 from foss42.text.slugify import slugify
@@ -119,3 +120,51 @@ async def update_user(username:str,
         return ok_200(user_data[username])
     except:
         raise internal_error_500()
+
+@io_router.patch('/user/{username}')
+async def patch_user(username: str,
+                     new_email: Optional[str] = None,
+                     new_password: Optional[str] = None):
+    try:
+        if username not in user_data:
+            raise not_found_404("User not found")
+        if new_email is not None:
+            user_data[username]["email"] = new_email
+        if new_password is not None:
+            user_data[username]["password"] = new_password
+        return ok_200(user_data[username])
+    except HTTPException:
+        raise
+    except:
+        raise internal_error_500()
+
+@io_router.delete('/user/{username}')
+async def delete_user(username: str):
+    try:
+        if username not in user_data:
+            raise not_found_404("User not found")
+        del user_data[username]
+        return ok_200({"message": "User deleted successfully"})
+    except HTTPException:
+        raise
+    except:
+        raise internal_error_500()
+
+@io_router.head('/head')
+async def head_request():
+    return Response(status_code=200, headers={"X-Custom-Head": "HEAD works"})
+
+@io_router.post('/octet-stream')
+async def octet_stream_request(request: Request):
+    try:
+        content_type = request.headers.get("content-type")
+        if content_type != "application/octet-stream":
+            raise bad_request_400("Content-Type must be application/octet-stream")
+        content = await request.body()
+        size = hz.humanize_bytes(len(content), 2)
+        return ok_200({"size": size, "message": "Octet stream processed successfully"})
+    except HTTPException:
+        raise
+    except:
+        raise internal_error_500()
+
