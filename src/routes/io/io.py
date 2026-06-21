@@ -15,7 +15,6 @@ from models.responses import *
 from foss42.text.slugify import slugify
 import foss42.text.humanize as hz
 
-
 io_router = APIRouter(tags=["I/O"])
 
 
