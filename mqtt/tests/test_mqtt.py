@@ -12,7 +12,7 @@ The whole module SKIPS gracefully when:
 so CI without a broker still passes. To run them for real:
 
     docker compose -f mqtt/docker-compose.yml up -d
-    pytest tests/mqtt/test_mqtt.py
+    pytest mqtt/tests
 
 The echo request->response test additionally needs the `publisher` service
 running; it skips (rather than fails) if no echo reply arrives.

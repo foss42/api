@@ -56,6 +56,11 @@ foss42 APIs project has 3 parts:
 - [foss42/api](https://github.com/foss42/api): The FastAPI app which serves the APIs.
 - [foss42/foss42-core](https://github.com/foss42/foss42-core): The open source core python library which has the algorithms, the data and does all the heavy-lifting.
 
+## Repository structure
+
+- `src/` — the hosted Open Source APIs (FastAPI app), with `tests/` as their test suite.
+- `grpc/` and `mqtt/` — self-contained, **local protocol test rigs** for API Dash's gRPC and MQTT clients (they are not hosted). Each has its own `README.md`, `tests/` and `requirements-dev.txt`, and runs via Docker.
+
 ## How to Run Locally
 
 1. **Clone the repository:**

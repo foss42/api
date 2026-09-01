@@ -14,7 +14,8 @@
 //   StreamTicks    server stream  N random "ticks" (a price/sensor-style feed)
 //   SumNumbers     client stream  sum / count / average of the numbers you send
 //   Chat           bidi stream    echoes each message back, stamped server-side
-//   EchoMetadata   unary          reflects the call's gRPC metadata back to you
+//   EchoMetadata   unary          reflects request metadata + sends response metadata
+//   SecureEcho     unary          like Echo, but requires auth-via-metadata credentials
 //   RaiseError     unary          fails with the gRPC status code you request
 //
 // The server (server.py) has server reflection enabled, so API Dash's Reflect
@@ -45,9 +46,16 @@ service TestService {
   // echoed back with a server-applied timestamp.
   rpc Chat (stream ChatMessage) returns (stream ChatMessage);
 
-  // Unary: reflects the call's gRPC metadata (headers) back to you, for
-  // testing custom metadata and auth-via-metadata (e.g. an authorization token).
+  // Unary: reflects the call's gRPC metadata (headers) back to you, AND sends
+  // response metadata (initial + trailing) back, for testing custom metadata,
+  // auth-via-metadata (e.g. an authorization token) and response-header views.
   rpc EchoMetadata (Empty) returns (MetadataResponse);
+
+  // Unary: like Echo, but AUTH-PROTECTED via metadata. Accepts the call only if
+  // metadata `authorization` == "Bearer test-token" OR `x-api-key` ==
+  // "test-apikey"; otherwise fails UNAUTHENTICATED. Exercises the Auth tab
+  // (Bearer token -> authorization metadata) and API-key auth.
+  rpc SecureEcho (EchoRequest) returns (EchoResponse);
 
   // Unary: deliberately fails with the gRPC status code you request, for
   // testing how the client surfaces non-OK statuses. code = a gRPC status code.

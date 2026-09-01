@@ -1,0 +1,3 @@
+grpcio  # grpc/tests: local gRPC server round-trip tests (not needed by the prod app)
+grpcio-tools  # grpc/tests: generates the Protobuf stubs on the fly from grpc/proto (not needed by the prod app)
+grpcio-reflection  # grpc/tests: client-side reflection listing in the round-trip tests (not needed by the prod app)

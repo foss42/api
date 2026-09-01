@@ -15,7 +15,8 @@ types plus the cross-cutting features:
   StreamTicks    server stream  N random "ticks" (a price/sensor-style feed)
   SumNumbers     client stream  sum / count / average of the numbers you send
   Chat           bidi stream    echoes each message back, stamped server-side
-  EchoMetadata   unary          reflects the call's gRPC metadata back to you
+  EchoMetadata   unary          reflects request metadata + sends response metadata
+  SecureEcho     unary          like Echo, but requires auth-via-metadata credentials
   RaiseError     unary          fails with the gRPC status code you request
 
 Two listeners are opened (same service on both, only the transport differs):
@@ -87,6 +88,12 @@ COUNTRIES = [
     "Canada", "Finland", "Australia", "France",
 ]
 EMAIL_DOMAINS = ["example.com", "test.dev", "mail.invalid", "apidash.dev"]
+
+# --- Accepted credentials for SecureEcho (auth-via-metadata) -----------------
+# The call is accepted if EITHER of these matches. Fixed test values -- this is
+# a fixture, not a real credential store. (See docs/grpc/auth.md.)
+VALID_BEARER = "Bearer test-token"  # metadata "authorization"
+VALID_API_KEY = "test-apikey"       # metadata "x-api-key"
 
 
 def log(msg):
@@ -193,11 +200,11 @@ class TestService(pb_grpc.TestServiceServicer):
                 ts=now_iso(),  # server stamps the reply
             )
 
-    # --- Unary: echo the request's gRPC metadata ----------------------------
+    # --- Unary: echo request metadata + send response metadata --------------
     def EchoMetadata(self, request, context):
         # invocation_metadata() is the gRPC equivalent of request headers. This
         # is how auth-via-metadata (e.g. an `authorization` token) is tested:
-        # whatever the client sent comes straight back.
+        # whatever the client sent comes straight back in the response body.
         out = {}
         for key, value in context.invocation_metadata():
             # Binary metadata keys end in "-bin" and carry bytes; render those
@@ -205,8 +212,44 @@ class TestService(pb_grpc.TestServiceServicer):
             if isinstance(value, bytes):
                 value = value.decode("utf-8", "replace")
             out[key] = value
+
+        # Also send metadata BACK (server -> client) so the response-metadata /
+        # headers view is testable: initial metadata is delivered with the
+        # response headers, trailing metadata with the final trailers.
+        context.send_initial_metadata(
+            [("x-server", "apidash-grpc-test"), ("x-echoed-count", str(len(out)))]
+        )
+        context.set_trailing_metadata([("x-trailer", "ok")])
+
         log(f"EchoMetadata: {len(out)} metadata entrie(s)")
         return pb.MetadataResponse(metadata=out)
+
+    # --- Unary: auth-protected echo (auth-via-metadata) ---------------------
+    def SecureEcho(self, request, context):
+        # gRPC has no built-in auth; credentials travel as metadata. Accept the
+        # call if EITHER a Bearer token OR an API key matches; otherwise abort
+        # UNAUTHENTICATED. This exercises API Dash's Auth tab (Bearer token ->
+        # `authorization` metadata) and API-key auth.
+        md = dict(context.invocation_metadata())
+        authorized = (
+            md.get("authorization") == VALID_BEARER
+            or md.get("x-api-key") == VALID_API_KEY
+        )
+        if not authorized:
+            log("SecureEcho: DENIED (missing or invalid credentials)")
+            context.abort(
+                grpc.StatusCode.UNAUTHENTICATED,
+                "missing or invalid credentials -- send 'authorization: Bearer "
+                "test-token' or 'x-api-key: test-apikey'",
+            )
+
+        seq = self._next_seq()
+        log(f"SecureEcho(seq={seq}) message={request.message!r} [authenticated]")
+        return pb.EchoResponse(
+            message=f"[authenticated] {request.message}",
+            server_time=now_iso(),
+            seq=seq,
+        )
 
     # --- Unary: fail with the requested gRPC status code --------------------
     def RaiseError(self, request, context):
