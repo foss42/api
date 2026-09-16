@@ -84,6 +84,10 @@ const source = new EventSource("{{ site_api }}/sse/events/5");
 
 source.onmessage = (event) => {
   console.log(event.data); // event1, event2, ...
+
+  if (event.data === "event5") {
+    source.close();
+  }
 };
 ```
 
