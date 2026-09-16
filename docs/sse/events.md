@@ -28,7 +28,7 @@ It is intended as a self-hosted SSE endpoint for testing SSE clients (such as AP
 
 #### API Request
 
-The below API request can be pasted directly into a browser to see the events stream as they arrive.
+Open the API request in a browser to view the streamed events as they arrive.
 
 ```text
 {{ site_api }}/sse/events/3
@@ -96,5 +96,3 @@ with httpx.stream("GET", "{{ site_api }}/sse/events/5") as response:
         if line.startswith("data:"):
             print(line)  # data: event1, data: event2, ...
 ```
-
-
