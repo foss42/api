@@ -21,6 +21,7 @@ It is intended as a self-hosted SSE endpoint for testing SSE clients (such as AP
 |-------------|-------------|
 | 200 | Stream started successfully |
 | 400 | `count` exceeds the maximum allowed value (`100`) |
+| 422 | `count` is not a valid integer |
 
 ## Sample Usage
 
