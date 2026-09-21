@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Depends
+from fastapi import Query
+import re
 import foss42.geo.country as co
 from models.geo.country import CountryCodeModel
 from models.responses import *
@@ -12,6 +14,24 @@ async def get_country_code_dictionary():
         res = co.country_code_map()
         return ok_200(res)
     except:
+        raise internal_error_500()
+
+
+@country_router.get("/filtercodes")
+async def filter_country_code_dictionary(country: list[str] = Query(...)):
+    try:
+        country_map = co.country_code_map()
+        search_pattern = re.compile(
+            r"\b(?:%s)\b" % "|".join(re.escape(term) for term in country),
+            re.IGNORECASE,
+        )
+        res = {
+            name: code
+            for name, code in country_map.items()
+            if search_pattern.search(name) or search_pattern.search(code)
+        }
+        return ok_200(res)
+    except Exception:
         raise internal_error_500()
 
 
